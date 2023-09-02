@@ -1,0 +1,7 @@
+Use java
+а) Subject: Processes, threads (threads).
+Tasks: Create a program (process) that runs two background threads (threads) in parallel. Use thread synchronization on a shared resource.
+Description of the program:
+When you start the program with the "Start" button, two threads Tthread1 and TThread2 are simultaneously launched in parallel, trying to set the "slider" to their position (1 to position 10, 2 to position 90)
+The priorities of the threads can be changed, and depending on the priority, preference is given to either one or the other thread
+At the end of the program, the threads are destroyed

@@ -1,0 +1,15 @@
+b) Topic: Control of processes, flows (threads) in a critical section using a blocking variable (the simplest semaphore)
+In the task use the program of task 1
+Make the following changes in the program:
+Introduce a global variable for the semaphore of type integer
+Place the START 1 and START 2 buttons to start the first and second threads (threads), before that the semaphore is set to the "busy" position
+Place the STOP 1 and STOP 2 buttons to stop the first and second threads (threads), the semaphore is set to the "free" position
+The START 1 button sets the lowest priority for the first thread
+The START 2 button sets the highest priority for the second thread
+Description of the program operation
+The threads are started sequentially. If one of the threads is running, the second one cannot be started because the critical section is busy and displays the message "Occupied by thread"
+The Stop button frees the critical section and destroys the current thread.
+The START button starts the thread and blocks another thread from pressing the STOP button
+The correct operation of the program is as follows: The START 1 button sets the slider to position 10, where it remains until you press the START 2 button, which sets it to position 90
+Pay attention! A semaphore (blocking variable) is a global variable available to both threads, so they work in the same address space (of this process).
+If the semaphore regulated the interaction of processes rather than threads, then it should be global to them and thus be in the address space of the operating system, which controls the processes
