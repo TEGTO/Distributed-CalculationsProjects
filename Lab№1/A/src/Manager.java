@@ -16,6 +16,8 @@ public class Manager {
         ui = new UI();
         threadFirst = new MyThread(ui.SliderThread,10);
         threadSecond = new MyThread(ui.SliderThread,90);
+        threadFirst.setPriority(1);
+        threadSecond.setPriority(1);
         spinnerEventChanger = new SpinnerEventChanger(threadFirst,threadSecond,ui);
         ui.StartButton.addActionListener(new ActionListener() {
             @Override

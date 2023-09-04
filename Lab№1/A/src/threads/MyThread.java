@@ -5,16 +5,8 @@ public class MyThread extends Thread
 {
     JSlider SliderThread;
     int numberToSlider;
-    int threadPriority =1;
     boolean IsContinue = true;
-    public  void SetThreadPriority(int newPriority)
-    {
-        threadPriority = newPriority;
-    }
-    public  int GetThreadPriority()
-    {
-        return threadPriority;
-    }
+
     public  void CloseThreadCycle()
     {
         IsContinue = false;
@@ -26,9 +18,9 @@ public class MyThread extends Thread
             try {
                 int newSliderNumber =  (int)SliderThread.getValue();
                 if(newSliderNumber > numberToSlider)
-                    newSliderNumber -= threadPriority;
+                    newSliderNumber -= 1;
                 else if (newSliderNumber < numberToSlider)
-                    newSliderNumber += threadPriority;
+                    newSliderNumber += 1;
                 SliderThread.setValue(newSliderNumber);
                 Thread.sleep(10);
             }
