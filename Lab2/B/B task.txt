@@ -1,0 +1,7 @@
+b) The first military task. On a dark, dark night, ensigns Ivanov, Petrov
+and Nechiporchuk are engaged in stealing military property from their native military unit. 
+Being intelligent people and excellent in combat and formation training, 
+the ensigns introduced a division of labor: Ivanov takes the property out of the warehouse, 
+Petrov loads it into the truck, and Nechiporchuk calculates the value of the property. 
+It is necessary to compile a multi-threaded application that simulates the activity of ensigns. 
+When deciding to use the paradigm "producer-consumer" with active expectation.

@@ -1,0 +1,7 @@
+а) The first problem is about Winnie the Pooh. At the end of the month, the bees calculated the damage caused 
+by Winnie the Pooh in the forest and decided to find him and punish him. To search for the bear, they divided the forest into sections, 
+each combed by one flock of bees. 
+If the bear is found in its area, the flock carries out a demonstrative punishment and returns to the hive.
+If the area is checked and Winnie the Pooh is not found, the flock also returns to the hive. 
+You need to create a multithreaded application that simulates the actions of bees. 
+Use the task portfolio paradigm to solve the problem.
