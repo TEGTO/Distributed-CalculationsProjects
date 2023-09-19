@@ -1,0 +1,8 @@
+c) Tasks about the Way of the Fist. 
+On the gray slopes of the Himalayas stand two ancient Buddhist monasteries: Guan-Yin and Guan-Yan. 
+Every year on the day of the Bodhisattva Aravatti's descent to earth, the monks of both monasteries 
+gather for a joint festival and show their cultivation on the Way of the Fist. 
+All those competing monks are divided into pairs, the winners of the pairs then fight among themselves and so on, 
+until the final match. The monastery, whose monks won the final battle, takes the bodhisattva statue for safekeeping. 
+Implement a multi-threaded application that determines the winner. An array is used as input data, which stores the 
+amount of Qi energy of each monk. When deciding to use the principle of dichotomy.
