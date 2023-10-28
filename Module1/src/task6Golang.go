@@ -112,5 +112,5 @@ func main() {
 	go train3.Run()
 
 	// Add a small delay so that the main thread does not terminate too quickly
-	time.Sleep(15 * time.Second)
+	time.Sleep(IN_TUNNEL_TIME * 4)
 }
