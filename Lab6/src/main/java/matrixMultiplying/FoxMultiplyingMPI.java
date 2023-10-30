@@ -1,8 +1,7 @@
 package matrixMultiplying;
 import mpi.MPI;
-import mpi.MPIException;
 
-public class FoxMultiplyingMPI implements BaseMultiplyingMPI
+public class FoxMultiplyingMPI implements IMultiplyingMPI
 {
     public int[][] multiply(int[][] A, int[][] B) throws Exception
     {

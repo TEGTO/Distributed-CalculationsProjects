@@ -12,21 +12,23 @@ public class Main
         // Sample matrix multiplication
         if (rank == 0)
             System.out.println("----Matrix multiplication example 1----");
-        MultipleMatrix(matrixA1, matrixB1, new TapeMultiplyingMPI());
-        MultipleMatrix(matrixA1, matrixB1, new FoxMultiplyingMPI()); //Works only on 4 processes
-        MultipleMatrix(matrixA1, matrixB1, new CannonMultiplyingMPI()); //Works only on 4 processes
-        MultipleMatrix(matrixA1, matrixB1, new SimpleMultiplication());
+        multiplyMatrix(matrixA1, matrixB1, new TapeMultiplyingMPI());
+        multiplyMatrix(matrixA1, matrixB1, new FoxMultiplyingMPI()); //Works only on 4 processes
+        multiplyMatrix(matrixA1, matrixB1, new CannonMultiplyingMPI()); //Works only on 4 processes
+        if (rank == 0)
+            multiplyMatrix(matrixA1, matrixB1, new SimpleMultiplication());
         if (rank == 0)
             System.out.println("----Matrix multiplication example 2----");
         int[][] matrixA2 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         int[][] matrixB2 = {{9, 8, 7}, {6, 5, 4}, {3, 2, 1}};
-        MultipleMatrix(matrixA2, matrixB2, new TapeMultiplyingMPI());
-        //MultipleMatrix(matrixA2, matrixB2, new FoxMultiplyingMPI()); //Works only on 9 processes
-        //MultipleMatrix(matrixA2, matrixB2, new CannonMultiplyingMPI()); //Works only on 9 processes
-        MultipleMatrix(matrixA2, matrixB2, new SimpleMultiplication());
+        multiplyMatrix(matrixA2, matrixB2, new TapeMultiplyingMPI());
+        multiplyMatrix(matrixA2, matrixB2, new FoxMultiplyingMPI()); //Works only on 9 processes
+        multiplyMatrix(matrixA2, matrixB2, new CannonMultiplyingMPI()); //Works only on 9 processes
+        if (rank == 0)
+            multiplyMatrix(matrixA2, matrixB2, new SimpleMultiplication());
         MPI.Finalize();
     }
-    public static void MultipleMatrix(int[][] matrixA, int[][] matrixB, BaseMultiplyingMPI multiplyingMPI)
+    public static void multiplyMatrix(int[][] matrixA, int[][] matrixB, IMultiplyingMPI multiplyingMPI)
     {
         int rank = MPI.COMM_WORLD.Rank();
         try

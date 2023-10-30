@@ -1,10 +1,7 @@
 package matrixMultiplying;
-import com.sun.tools.javac.Main;
 import mpi.MPI;
-import mpi.MPIException;
-import mpi.ProdInt;
 
-public class CannonMultiplyingMPI implements BaseMultiplyingMPI
+public class CannonMultiplyingMPI implements IMultiplyingMPI
 {
     @Override
     public String toString()
@@ -17,12 +14,19 @@ public class CannonMultiplyingMPI implements BaseMultiplyingMPI
         int rank = MPI.COMM_WORLD.Rank();
         int size = MPI.COMM_WORLD.Size();
         // Cannon's Algorithm
-        int rootOfUniverse = (int) Math.sqrt(size);
-        int row = rank / rootOfUniverse;
-        int col = rank % rootOfUniverse;
+        int n = (int) Math.sqrt(size);
+        int row = rank / n;
+        int col = rank % n;
         int matrixSize = A.length;
+        if (n * n != size || matrixSize % n != 0)
+        {
+            if (rank == 0)
+                throw new Exception("Number of processes must be a perfect square.");
+            else
+                return null;
+        }
         int subMatrixSize = A[0].length;
-        int blockSize = matrixSize / rootOfUniverse;
+        int blockSize = matrixSize / n;
         int[][] C = new int[subMatrixSize][subMatrixSize];
         // Initial alignment
         ShiftLeft(A, row, subMatrixSize, matrixSize);

@@ -1,7 +1,7 @@
 package matrixMultiplying;// MatrixMultiplierMPI.java
 import mpi.*;
 
-public class TapeMultiplyingMPI implements BaseMultiplyingMPI
+public class TapeMultiplyingMPI implements IMultiplyingMPI
 {
     public int[][] multiply(int[][] a, int[][] b) throws Exception
     {
@@ -30,7 +30,7 @@ public class TapeMultiplyingMPI implements BaseMultiplyingMPI
         }
         else
             MPI.COMM_WORLD.Recv(localA, 0, sendcounts[rank], MPI.OBJECT, 0, 0);
-        // Matrix multiplication for the local segment...
+        // Matrix multiplication for the local segment
         int[][] localResult = new int[localA.length][b[0].length];
         for (int row = 0; row < localA.length; row++)
         {

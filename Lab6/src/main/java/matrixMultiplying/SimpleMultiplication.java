@@ -1,7 +1,6 @@
 package matrixMultiplying;
-import mpi.MPI;
 
-public class SimpleMultiplication implements BaseMultiplyingMPI
+public class SimpleMultiplication implements IMultiplyingMPI
 {
     @Override
     public int[][] multiply(int[][] a, int[][] b) throws Exception {
