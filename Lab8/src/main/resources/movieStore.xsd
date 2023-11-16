@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="MovieStore">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="MovieGenre">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                            <xs:element maxOccurs="unbounded" name="Movie">
+                                <xs:complexType>
+                                    <xs:attribute name="movieId" type="xs:int" use="required" />
+                                    <xs:attribute name="movieName" type="xs:string" use="required" />
+                                    <xs:attribute name="creationYear" type="xs:int" use="required" />
+                                    <xs:attribute name="duration" type="xs:float" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="movieGenreId" type="xs:int" use="required" />
+                        <xs:attribute name="movieGenreName" type="xs:string" use="required" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
