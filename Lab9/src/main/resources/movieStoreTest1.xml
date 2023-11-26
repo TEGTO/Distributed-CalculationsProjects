@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><MovieStore>
+    
+    <MovieGenre movieGenreId="2" movieGenreName="Action">
+        <Movie creationYear="1988" duration="2.1" movieId="3" movieName="Die Hard"/>
+        <Movie creationYear="2015" duration="2" movieId="4" movieName="Mad Max: Fury Road"/>
+        <Movie creationYear="1999" duration="2.16" movieId="5" movieName="The Matrix"/>
+    </MovieGenre>
+    <MovieGenre movieGenreId="3" movieGenreName="Comedy">
+    </MovieGenre>
+<MovieGenre movieGenreId="1" movieGenreName="Horror"><Movie creationYear="1982" duration="1.5" movieId="2" movieName="The Thing"/><Movie creationYear="1980" duration="2.0" movieId="1" movieName="The Shining"/></MovieGenre></MovieStore>

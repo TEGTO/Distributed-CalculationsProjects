@@ -43,19 +43,19 @@ public class SocketMovieDBServerInteraction extends BaseMovieDBServerInteraction
             boolean result = (boolean) inputStream.readObject();
             if (result)
             {
-                System.out.println("Operation successful");
+                MyLogger.printInfoMessage("Operation successful");
             }
             else
             {
-                System.out.println("Operation failed");
+                MyLogger.printInfoMessage("Operation failed");
             }
             return;
         }
         catch (IOException | ClassNotFoundException e)
         {
-            e.printStackTrace();
+            MyLogger.printErrorMessage(e.getMessage());
         }
-        System.out.println("Operation failed");
+        MyLogger.printInfoMessage("Operation failed");
     }
     @Override
     public void addMovie(Movie movie)
@@ -69,19 +69,19 @@ public class SocketMovieDBServerInteraction extends BaseMovieDBServerInteraction
             boolean result = (boolean) inputStream.readObject();
             if (result)
             {
-                System.out.println("Operation successful");
+                MyLogger.printInfoMessage("Operation successful");
             }
             else
             {
-                System.out.println("Operation failed");
+                MyLogger.printInfoMessage("Operation failed");
             }
             return;
         }
         catch (IOException | ClassNotFoundException e)
         {
-            e.printStackTrace();
+            MyLogger.printErrorMessage(e.getMessage());
         }
-        System.out.println("Operation failed");
+        MyLogger.printInfoMessage("Operation failed");
     }
     @Override
     public ArrayList<MovieGenre> getMovieGenres()
@@ -112,8 +112,7 @@ public class SocketMovieDBServerInteraction extends BaseMovieDBServerInteraction
         }
         catch (IOException | ClassNotFoundException e)
         {
-            e.printStackTrace();
-            MyLogger.printInfoMessage("Operation failed");
+            MyLogger.printErrorMessage(e.getMessage());
             return null;
         }
     }
@@ -146,8 +145,7 @@ public class SocketMovieDBServerInteraction extends BaseMovieDBServerInteraction
         }
         catch (IOException | ClassNotFoundException e)
         {
-            e.printStackTrace();
-            MyLogger.printInfoMessage("Operation failed");
+            MyLogger.printErrorMessage(e.getMessage());
             return null;
         }
     }
@@ -174,8 +172,7 @@ public class SocketMovieDBServerInteraction extends BaseMovieDBServerInteraction
         }
         catch (IOException | ClassNotFoundException e)
         {
-            e.printStackTrace();
-            MyLogger.printInfoMessage("Operation failed");
+            MyLogger.printErrorMessage(e.getMessage());
             return null;
         }
     }
@@ -202,8 +199,7 @@ public class SocketMovieDBServerInteraction extends BaseMovieDBServerInteraction
         }
         catch (IOException | ClassNotFoundException e)
         {
-            MyLogger.printInfoMessage("Operation failed");
-            MyLogger.printErrorMessage((e.getMessage()));
+            MyLogger.printErrorMessage(e.getMessage());
             return null;
         }
     }

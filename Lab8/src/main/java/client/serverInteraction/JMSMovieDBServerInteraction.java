@@ -102,7 +102,6 @@ public class JMSMovieDBServerInteraction extends BaseMovieDBServerInteraction im
         }
         catch (IOException | InterruptedException | ExecutionException ex)
         {
-            MyLogger.printInfoMessage("Operation failed");
             MyLogger.printErrorMessage(ex.getMessage());
         }
     }
@@ -120,7 +119,6 @@ public class JMSMovieDBServerInteraction extends BaseMovieDBServerInteraction im
         }
         catch (IOException | InterruptedException | ExecutionException ex)
         {
-            MyLogger.printInfoMessage("Operation failed");
             MyLogger.printErrorMessage(ex.getMessage());
         }
     }
