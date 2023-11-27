@@ -1,0 +1,25 @@
+generated/
+target/
+
+# eclipse
+.project
+.classpath
+.settings/
+.wtpmodules
+
+# intellij
+*.iml
+*.ipr
+*.iws
+.idea
+
+*.log
+*.tlog
+
+# hprof
+java_pid*
+
+# vi backup file
+*~
+
+work/

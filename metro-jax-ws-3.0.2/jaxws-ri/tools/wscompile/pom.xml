@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Distribution License v. 1.0, which is available at
+    http://www.eclipse.org/org/documents/edl-v10.php.
+
+    SPDX-License-Identifier: BSD-3-Clause
+
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>com.sun.xml.ws</groupId>
+        <artifactId>project</artifactId>
+        <version>3.0.2</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.sun.xml.ws</groupId>
+    <artifactId>wscompile</artifactId>
+    <version>3.0.2</version>
+
+    <name>JAX-WS RI Tools (wscompile)</name>
+    <description>JAX-WS RI Tools</description>
+
+    <properties>
+        <spotbugs.exclude>${project.basedir}/exclude.xml</spotbugs.exclude>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>rt</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>rt-fi</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>httpspi-servlet</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>servlet</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-jxc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-xjc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-launcher</artifactId>
+            <version>${ant.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/version</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.sun.istack</groupId>
+                <artifactId>istack-commons-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-property</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>validate</phase>
+                        <configuration>
+                            <rules>
+                                <requireProperty>
+                                    <property>xml.bind-api.version</property>
+                                    <message>Property xml.bind-api.version not imported or set!</message>
+                                </requireProperty>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-api</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib/api</outputDirectory>
+                            <excludeTransitive>true</excludeTransitive>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.xml.bind</groupId>
+                                    <artifactId>jakarta.xml.bind-api</artifactId>
+                                    <type>jar</type>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.xml.ws</groupId>
+                                    <artifactId>jakarta.xml.ws-api</artifactId>
+                                    <type>jar</type>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.xml.soap</groupId>
+                                    <artifactId>jakarta.xml.soap-api</artifactId>
+                                    <type>jar</type>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.annotation</groupId>
+                                    <artifactId>jakarta.annotation-api</artifactId>
+                                    <type>jar</type>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.jws</groupId>
+                                    <artifactId>jakarta.jws-api</artifactId>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-lib</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <excludeArtifactIds>jakarta.activation-api,ant-launcher,ant-nodeps</excludeArtifactIds>
+                            <excludeScope>system</excludeScope>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-ant</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib/ant</outputDirectory>
+                            <includeArtifactIds>ant,ant-launcher,ant-nodeps</includeArtifactIds>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <compilerArgs>
+                                <arg>--add-reads</arg>
+                                <arg>com.sun.tools.ws.wscompile=ALL-UNNAMED</arg>
+                                <arg>--add-reads</arg>
+                                <arg>com.sun.istack.tools=ALL-UNNAMED</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-compile-mr</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <compileSourceRoots>
+                                <compileSourceRoot>${project.basedir}/src/main/java-mr</compileSourceRoot>
+                            </compileSourceRoots>
+                            <outputDirectory>${project.build.outputDirectory}/META-INF/versions/9</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <configuration>
+                            <compilerArgs>
+                                <arg>--add-modules</arg>
+                                <arg>junit,ant</arg>
+                                <arg>--add-reads</arg>
+                                <arg>com.sun.tools.ws.wscompile.test=junit</arg>
+                                <arg>--add-reads</arg>
+                                <arg>com.sun.tools.ws.wscompile=ant</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <systemPropertyVariables>
+                        <java.io.tmpdir>${project.build.directory}/test-antprojects</java.io.tmpdir>
+                        <bin.folder>${project.build.directory}</bin.folder>
+                        <xml.bind-api.version>${xml.bind-api.version}</xml.bind-api.version>
+                        <jakarta.jws-api.version>${jakarta.jws-api.version}</jakarta.jws-api.version>
+                        <jakarta.annotation-api.version>${jakarta.annotation-api.version}</jakarta.annotation-api.version>
+                        <jaxws-api.version>${jaxws-api.version}</jaxws-api.version>
+                        <jacoco-agent.destfile>${project.build.directory}</jacoco-agent.destfile>
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-test</id>
+                        <configuration>
+                            <excludes>
+                                <exclude>com.sun.tools.ws.test.wsdl.parser.WSImportSec2Test</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-fork2</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <com.sun.xml.ws.disableXmlSecurity>true</com.sun.xml.ws.disableXmlSecurity>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>com.sun.tools.ws.test.wsdl.parser.WSImportSec2Test</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultEntries>false</addDefaultEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Multi-Release>true</Multi-Release>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+<!--            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant</artifactId>
+                        <version>${ant.version}</version>
+                    </dependency>
+                </dependencies>
+                    TODO endorse for JDK9
+                <executions>
+                    <execution>
+                        <id>EBCDIC-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="Starting EBCDIC test." />
+                                <path id="compile.classpath">
+                                    <pathelement location="${basedir}/target/classes"/>
+                                    <fileset dir="${basedir}/target/lib/" includes="*.jar"/>
+                                    <fileset dir="${basedir}/target/endorsed/" includes="*.jar"/>
+                                    <fileset dir="${basedir}/target/lib/ant" includes="*.jar" />
+                                </path>
+                                <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+                                    <classpath refid="compile.classpath"/>
+                                </taskdef>
+                                <mkdir dir="${basedir}/target/EBCDIC" />
+                                <wsimport
+                                        fork="true"
+                                        debug="true"
+                                        destdir="${basedir}/target/EBCDIC"
+                                        quiet="true"
+                                        xendorsed="true"
+                                        wsdl="${basedir}/src/test/resources/com/sun/tools/ws/EBCDIC.wsdl">
+                                    <jvmarg line="-Dfile.encoding=Cp037"/>
+                                    <jvmarg line="-Dnet.sourceforge.cobertura.datafile=${net.sourceforge.cobertura.datafile}"/>
+                                </wsimport>
+                            </target>
+                            &lt;!&ndash; TODO JDK9 endorse for &ndash;&gt;
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin> -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-mr-resource</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/java-mr</directory>
+                                    <targetPath>META-INF/versions/9</targetPath>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Multi-Release>true</Multi-Release>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalOptions>
+                        --add-reads com.sun.tools.ws.wscompile=ALL-UNNAMED
+                        --add-reads com.sun.istack.tools=ALL-UNNAMED
+                    </additionalOptions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
