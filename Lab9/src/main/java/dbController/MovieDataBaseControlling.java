@@ -85,8 +85,9 @@ public class MovieDataBaseControlling extends AbstractController
             return false;
         }
     }
-    public Boolean addMovie(Movie movie)
+    public Integer addMovie(Movie movie)
     {
+        int generatedMovieId = -1;
         try (Connection con = DriverManager.getConnection(url, user, password); PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO " + MovieFields.MOVIE + " (" + MovieFields.MOVIE_NAME + ", " + MovieFields.CREATION_YEAR + ", " + MovieFields.DURATION + ", " + MovieFields.MOVIE_GENRE_ID + ") VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS))
         {
             preparedStatement.setString(1, movie.getMovieName());
@@ -100,17 +101,17 @@ public class MovieDataBaseControlling extends AbstractController
                 {
                     if (generatedKeys.next())
                     {
-                        int generatedMovieId = generatedKeys.getInt(1);
+                        generatedMovieId = generatedKeys.getInt(1);
                         movie.setMovieId(generatedMovieId);
                     }
                 }
             }
-            return true;
+            return generatedMovieId;
         }
         catch (SQLException sqlEx)
         {
             MyLogger.logger.error(sqlEx.getMessage());
-            return false;
+            return generatedMovieId;
         }
     }
     public Boolean updateMovie(Movie movie)
@@ -133,6 +134,10 @@ public class MovieDataBaseControlling extends AbstractController
             MyLogger.logger.error(sqlEx.getMessage());
             return false;
         }
+    }
+    public Boolean removeMovie(int movieId)
+    {
+        return removeMovie(new Movie(movieId, "", 0, 0f, null));
     }
     public Boolean removeMovie(Movie movie)
     {

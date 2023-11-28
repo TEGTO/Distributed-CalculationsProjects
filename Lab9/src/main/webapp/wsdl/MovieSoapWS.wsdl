@@ -18,7 +18,7 @@
     <message name="getMovieByIdResponse">
         <part name="parameters" element="tns:getMovieByIdResponse"/>
     </message>
-    <portType name="IMovieDBWS">
+    <portType name="IMovieSoapDBWS">
         <operation name="addNewMovie">
             <input wsam:Action="http://lab9/IMovieDBWS/addNewMovieRequest" message="tns:addNewMovie"/>
             <output wsam:Action="http://lab9/IMovieDBWS/addNewMovieResponse" message="tns:addNewMovieResponse"/>
@@ -28,7 +28,7 @@
             <output wsam:Action="http://lab9/IMovieDBWS/getMovieByIdResponse" message="tns:getMovieByIdResponse"/>
         </operation>
     </portType>
-    <binding name="MovieDBImpPortBinding" type="tns:IMovieDBWS">
+    <binding name="MovieDBImpPortBinding" type="tns:IMovieSoapDBWS">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
         <operation name="addNewMovie">
             <soap:operation soapAction=""/>

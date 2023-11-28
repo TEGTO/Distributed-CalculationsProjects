@@ -1,4 +1,7 @@
 package movies;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 public class Movie implements Serializable
@@ -18,7 +21,15 @@ public class Movie implements Serializable
         this.duration = duration;
         this.genre = genre;
     }
-
+    @JsonCreator
+    public Movie(@JsonProperty("movieId") Integer movieId, @JsonProperty("movieName") String movieName, @JsonProperty("creationYear") Integer creationYear, @JsonProperty("duration") Float duration, @JsonProperty("genreId") Integer genreId, @JsonProperty("genreName") String genreName)
+    {
+        this.movieId = movieId;
+        this.movieName = movieName;
+        this.creationYear = creationYear;
+        this.duration = duration;
+        this.genre = new MovieGenre(genreId, genreName);
+    }
     public Integer getMovieId()
     {
         return movieId;
@@ -59,7 +70,8 @@ public class Movie implements Serializable
     {
         this.genre = genre;
     }
-    public void setGenre(int genreId) { this.genre = new MovieGenre(genreId, "");}
+    public void setGenre(int genreId) {this.genre = new MovieGenre(genreId, "");}
+    public void setGenre(int genreId, String genreName) {this.genre = new MovieGenre(genreId, genreName);}
     public String toString()
     {
         return "----ID: " + movieId + " Name: " + movieName + " Creation Year: " + creationYear + " Duration: " + duration + "----";

@@ -87,7 +87,7 @@ public class MovieStore
     {
         return xmlControlling.addNewMovie(newMovie);
     }
-    public Boolean addNewMovieToDB(Movie newMovie)
+    public Integer addNewMovieToDB(Movie newMovie)
     {
         return dbControlling.addMovie(newMovie);
     }

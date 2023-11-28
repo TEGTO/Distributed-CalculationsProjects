@@ -148,7 +148,7 @@ class MovieStoreTest
         assertNotNull(retrievedMovieGenre);
         for (Movie movie: originMovies)
         {
-            assertTrue(movieStore.addNewMovieToDB(movie));
+            assertNotEquals(movieStore.addNewMovieToDB(movie), -1);
             Movie retrievedMovie = movieStore.getMovieFromDB(movie.getMovieId());
             assertNotNull(retrievedMovie);
         }

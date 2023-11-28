@@ -4,7 +4,7 @@ import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 
 @WebService
-public interface IMovieDBWS
+public interface IMovieSoapDBWS
 {
     @WebMethod
     public String getMovieById(@WebParam(name = "movieId")Integer id);

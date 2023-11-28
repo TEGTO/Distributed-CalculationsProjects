@@ -5,8 +5,8 @@ import lab8.server.ServerConstants;
 import movies.Movie;
 import movies.MovieGenre;
 
-@WebService(endpointInterface = "lab9.IMovieDBWS")
-public class MovieDBImp implements IMovieDBWS
+@WebService(endpointInterface = "lab9.IMovieSoapDBWS")
+public class MovieSoapDBImp implements IMovieSoapDBWS
 {
     @Override
     public String getMovieById(Integer id)
