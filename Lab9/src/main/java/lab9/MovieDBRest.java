@@ -6,7 +6,6 @@ import jakarta.ws.rs.core.Response;
 import lab8.server.ServerConstants;
 import movies.Movie;
 import movies.MovieGenre;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;

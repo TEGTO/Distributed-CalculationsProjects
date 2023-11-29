@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.springframework</groupId>
     <artifactId>gs-maven</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <version>0.1.0</version>
 
     <properties>
@@ -196,5 +196,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>ROOT</finalName>
     </build>
 </project>
