@@ -4,7 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lab8.server.ServerConstants;
+import lab9.ServerConstants;
 import movies.Movie;
 import movies.MovieGenre;
 import myLogger.MyLogger;

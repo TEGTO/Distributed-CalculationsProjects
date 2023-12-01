@@ -1,9 +1,9 @@
-package lab9;
+package lab9.rest;
 import dbController.MovieDataBaseControlling;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import lab8.server.ServerConstants;
+import lab9.ServerConstants;
 import movies.Movie;
 import movies.MovieGenre;
 import java.net.URI;

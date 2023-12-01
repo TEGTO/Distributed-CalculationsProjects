@@ -1,11 +1,11 @@
-package lab9;
+package lab9.soap;
 import dbController.MovieDataBaseControlling;
 import jakarta.jws.WebService;
-import lab8.server.ServerConstants;
+import lab9.ServerConstants;
 import movies.Movie;
 import movies.MovieGenre;
 
-@WebService(endpointInterface = "lab9.IMovieSoapDBWS")
+@WebService(endpointInterface = "lab9.soap.IMovieSoapDBWS")
 public class MovieSoapDBImp implements IMovieSoapDBWS
 {
     @Override

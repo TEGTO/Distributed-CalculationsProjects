@@ -1,4 +1,4 @@
-package lab9;
+package lab9.soap;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
