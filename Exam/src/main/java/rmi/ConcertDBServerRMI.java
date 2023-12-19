@@ -1,5 +1,5 @@
 package rmi;
-import house.Concert;
+import concert.Concert;
 import myLogger.MyLogger;
 
 import java.rmi.RemoteException;

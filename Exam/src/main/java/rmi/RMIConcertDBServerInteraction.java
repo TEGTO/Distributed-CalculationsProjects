@@ -1,6 +1,6 @@
 package rmi;
 import constants.Constants;
-import house.Concert;
+import concert.Concert;
 import myLogger.MyLogger;
 
 import java.rmi.NotBoundException;

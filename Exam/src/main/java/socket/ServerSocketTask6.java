@@ -1,7 +1,7 @@
 package socket;
 import com.google.gson.Gson;
 import constants.Constants;
-import house.Concert;
+import concert.Concert;
 import myLogger.MyLogger;
 
 import java.io.IOException;

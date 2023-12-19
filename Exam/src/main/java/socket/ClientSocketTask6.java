@@ -1,5 +1,5 @@
 package socket;
-import house.Concert;
+import concert.Concert;
 
 import java.util.ArrayList;
 import java.util.Arrays;

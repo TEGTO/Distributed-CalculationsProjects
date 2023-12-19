@@ -1,8 +1,7 @@
 package rmi;
-import house.Concert;
+import concert.Concert;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 
 public interface DBControllingServerRMI extends Remote
 {
