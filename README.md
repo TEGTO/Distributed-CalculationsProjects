@@ -9,3 +9,4 @@
 8. [Lab 8. Console implementation of a two-level system](https://github.com/TEGTO/Distributed-CalculationsProjects/tree/main/Lab8) || *[(Description)](https://github.com/TEGTO/Distributed-CalculationsProjects/blob/main/ProjectsDescription/Lab8.pdf)*
 9. [Lab 9. Multi-level system. (Docker + Tomcat + Mysql)](https://github.com/TEGTO/Distributed-CalculationsProjects/tree/main/Lab9) || *[(Description)](https://github.com/TEGTO/Distributed-CalculationsProjects/blob/main/ProjectsDescription/Lab9.pdf)*
 10. [Module](https://github.com/TEGTO/Distributed-CalculationsProjects/tree/main/Module1) || *[(Description)](https://github.com/TEGTO/Distributed-CalculationsProjects/blob/main/ProjectsDescription/Module.pdf)*
+11. [Exam](https://github.com/TEGTO/Distributed-CalculationsProjects/tree/main/Exam) || *[(Description)](https://github.com/TEGTO/Distributed-CalculationsProjects/blob/main/ProjectsDescription/Exam.pdf)*
