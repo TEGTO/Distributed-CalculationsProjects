@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac170e8b-d13e-40cc-a8a7-eb9bd3f27f18" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab9/src/main/java/lab9/ServerConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Lab9/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/house/Concert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/house/Concert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/ClientRmiTask6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rmi/ClientRmiTask6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/MovieDBServerRMI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rmi/ConcertDBServerRMI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/RMIMovieDBServerInteraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rmi/RMIConcertDBServerInteraction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/rmi/ServerRmiTask6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/rmi/ServerRmiTask6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/ClientSocketTask6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socket/ClientSocketTask6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/ServerSocketTask6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socket/ServerSocketTask6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/socket/SocketMovieDBServerInteraction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/socket/SocketConcertDBServerInteraction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,34 +33,37 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2Zi7MDQ8N8hg7TosZH2U55KCZpZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "go.import.settings.migrated": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.16601562",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.16601562&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Studies\Course_3\DistributedCalculations\Labs\Exam\src\main\java" />
@@ -90,6 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702892997366</updated>
       <workItem from="1702892998506" duration="15401000" />
+      <workItem from="1702967458951" duration="11528000" />
     </task>
     <servers />
   </component>

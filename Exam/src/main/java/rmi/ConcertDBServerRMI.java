@@ -5,10 +5,10 @@ import myLogger.MyLogger;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public class MovieDBServerRMI implements DBControllingServerRMI
+public class ConcertDBServerRMI implements DBControllingServerRMI
 {
     ArrayList<Concert> data;
-    MovieDBServerRMI()
+    ConcertDBServerRMI()
     {
         Concert dataSource = new Concert();
         data = dataSource.exampleData;
@@ -16,19 +16,26 @@ public class MovieDBServerRMI implements DBControllingServerRMI
     @Override
     public Concert getConcertById(int id) throws RemoteException
     {
-        Concert result = null;
         for (Concert concert : data)
         {
             if (concert.getId() == id)
-                result = concert;
+                return concert;
         }
-        return result;
+        return null;
     }
     @Override
     public Boolean addNewConcert(Concert newConcert) throws RemoteException
     {
         try
         {
+            for (Concert concert : data)
+            {
+                if (concert.getId() == newConcert.getId())
+                {
+                    MyLogger.logger.info("Id is occupied!");
+                    return false;
+                }
+            }
             data.add(newConcert);
             return true;
         }
@@ -39,13 +46,20 @@ public class MovieDBServerRMI implements DBControllingServerRMI
         }
     }
     @Override
-    public Boolean updateConcert(Concert concert) throws RemoteException
+    public Boolean updateConcert(Concert newConcert) throws RemoteException
     {
         try
         {
-           int index = data.indexOf(concert);
-           data.set(index,concert);
-            return true;
+            for (Concert concert : data)
+            {
+                if (concert.getId() == newConcert.getId())
+                {
+                    int index = data.indexOf(concert);
+                    data.set(index, newConcert);
+                    return true;
+                }
+            }
+            return false;
         }
         catch (Exception e)
         {
@@ -58,8 +72,15 @@ public class MovieDBServerRMI implements DBControllingServerRMI
     {
         try
         {
-            data.remove(id);
-            return true;
+            for (Concert concert : data)
+            {
+                if (concert.getId() == id)
+                {
+                    data.remove(concert);
+                    return true;
+                }
+            }
+            return false;
         }
         catch (Exception e)
         {

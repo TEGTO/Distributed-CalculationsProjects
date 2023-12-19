@@ -13,7 +13,7 @@ public class ServerRmiTask6
     public static void main(String[] args) throws RemoteException, AlreadyBoundException, InterruptedException
     {
         MyLogger.logger.info("Server is running and waiting for connections...");
-        final MovieDBServerRMI server = new MovieDBServerRMI();
+        final ConcertDBServerRMI server = new ConcertDBServerRMI();
         final Registry registry = LocateRegistry.createRegistry(Constants.SERVER_PORT);
         Remote stub = UnicastRemoteObject.exportObject(server, 0);
         registry.bind(Constants.UNIQUE_BINDING_NAME, stub);

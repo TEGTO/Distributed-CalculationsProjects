@@ -8,14 +8,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 
-public class SocketMovieDBServerInteraction implements AutoCloseable
+public class SocketConcertDBServerInteraction implements AutoCloseable
 {
     Socket socket;
     ObjectOutputStream outputStream;
     ObjectInputStream inputStream;
-    public SocketMovieDBServerInteraction()
+    public SocketConcertDBServerInteraction()
     {
         try
         {
@@ -37,11 +36,11 @@ public class SocketMovieDBServerInteraction implements AutoCloseable
             Gson gson = new Gson();
             outputStream.writeObject("getConcertById");
             outputStream.writeObject(id);
-            boolean result = (boolean) inputStream.readObject();
+            boolean result = (Boolean) inputStream.readObject();
+            String concertStr = (String) inputStream.readObject();
             if (result)
             {
-                String conecertStr = ((String) inputStream.readObject());
-                Concert resultConcert = gson.fromJson(conecertStr, Concert.class);
+                Concert resultConcert = gson.fromJson(concertStr, Concert.class);
                 return resultConcert;
             }
             else
@@ -95,6 +94,29 @@ public class SocketMovieDBServerInteraction implements AutoCloseable
             else
             {
                 MyLogger.logger.info("Error while removing...");
+            }
+        }
+        catch (IOException | ClassNotFoundException e)
+        {
+            MyLogger.logger.error(e.getMessage());
+        }
+    }
+    public void updateConcert(Concert concert)
+    {
+        try
+        {
+            MyLogger.logger.info("Client sends request to update a concert...");
+            Gson gson = new Gson();
+            outputStream.writeObject("updateConcert");
+            outputStream.writeObject(gson.toJson(concert));
+            boolean result = (boolean) inputStream.readObject();
+            if (result)
+            {
+                MyLogger.logger.info("Concert successfully updated.");
+            }
+            else
+            {
+                MyLogger.logger.info("Error while updating...");
             }
         }
         catch (IOException | ClassNotFoundException e)

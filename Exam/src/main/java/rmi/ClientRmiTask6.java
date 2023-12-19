@@ -1,8 +1,6 @@
 package rmi;
 import house.Concert;
 
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -12,7 +10,7 @@ public class ClientRmiTask6
     public static void main(String[] args)
     {
         Scanner myObj = new Scanner(System.in);
-        RMIMovieDBServerInteraction rmiMovieDBServerInteraction = new RMIMovieDBServerInteraction();
+        RMIConcertDBServerInteraction rmiConcertDBServerInteraction = new RMIConcertDBServerInteraction();
         int id;
         float price;
         String genre, place;
@@ -25,36 +23,38 @@ public class ClientRmiTask6
             System.out.println("3. Remove Concert By Id");
             System.out.println("4. Update Concert");
             System.out.print("Enter an action: ");
-            int action = myObj.nextInt();
+            int action = Integer.parseInt(myObj.nextLine());
             switch (action)
             {
                 case 1:
                     System.out.print("Enter concert id: ");
-                    id = myObj.nextInt();
-                    concert = rmiMovieDBServerInteraction.getConcertById(id);
+                    id = Integer.parseInt(myObj.nextLine());
+                    concert = rmiConcertDBServerInteraction.getConcertById(id);
                     Concert.PrintConcert(concert);
                     break;
                 case 2:
+                    System.out.print("Enter id: ");
+                    id =  Integer.parseInt(myObj.nextLine());
                     System.out.print("Enter price: ");
-                    price = myObj.nextFloat();
+                    price = Float.parseFloat(myObj.nextLine());
                     System.out.print("Enter place: ");
                     place = myObj.nextLine();
                     System.out.print("Enter genre: ");
                     genre = myObj.nextLine();
-                    Concert newConcert = new Concert(genre, LocalDateTime.now(), price, new ArrayList<>(Arrays.asList("New1", "New2")), place);
-                    rmiMovieDBServerInteraction.addNewConcert(newConcert);
+                    Concert newConcert = new Concert(id,genre, "10.12.2019", price, new ArrayList<>(Arrays.asList("New1", "New2")), place);
+                    rmiConcertDBServerInteraction.addNewConcert(newConcert);
                     break;
                 case 3:
                     System.out.print("Enter concert id: ");
-                    id = myObj.nextInt();
-                    rmiMovieDBServerInteraction.removeConcertById(id);
+                    id = Integer.parseInt(myObj.nextLine());
+                    rmiConcertDBServerInteraction.removeConcertById(id);
                     break;
                 case 4:
                     System.out.print("Enter concert id: ");
-                    id = myObj.nextInt();
-                    concert = rmiMovieDBServerInteraction.getConcertById(id);
+                    id = Integer.parseInt(myObj.nextLine());
+                    concert = rmiConcertDBServerInteraction.getConcertById(id);
                     System.out.print("Enter price: ");
-                    price = myObj.nextFloat();
+                    price = Float.parseFloat(myObj.nextLine());
                     concert.price = price;
                     System.out.print("Enter place: ");
                     place = myObj.nextLine();
@@ -62,8 +62,8 @@ public class ClientRmiTask6
                     System.out.print("Enter genre: ");
                     genre = myObj.nextLine();
                     concert.genre = genre;
-                    concert.data = LocalDateTime.now();
-                    rmiMovieDBServerInteraction.addNewConcert(concert);
+                    concert.date = "10.10.2010";
+                    rmiConcertDBServerInteraction.updateConcert(concert);
                     break;
                 default:
                     System.out.println("Try again.");

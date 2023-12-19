@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import constants.Constants;
 import house.Concert;
 import myLogger.MyLogger;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -35,23 +36,23 @@ public class ServerSocketTask6
                     // Process the request
                     switch (request)
                     {
-                        case "getApartmentsByRoomNumber":
+                        case "getConcertById":
                             try
                             {
-                                int roomNumber = (int) inputStream.readObject();
-                                receivedData = new ArrayList<>();
+                                result = null;
+                                int id = (int) inputStream.readObject();
+                                Concert concertResult = null;
                                 for (Concert concert : dataSource.exampleData)
                                 {
-                                    if (concert.roomNumber.equals(roomNumber))
-                                        receivedData.add(concert);
+                                    if (concert.getId() == id)
+                                    {
+                                        concertResult = concert;
+                                        break;
+                                    }
                                 }
                                 outputStream.writeObject(true);
-                                result = new String();
-                                for (Concert concert : receivedData)
-                                {
-                                    result += gson.toJson(concert);
-                                    result += Constants.SPLIT_SYMBOL;
-                                }
+                                if (concertResult != null)
+                                    result = gson.toJson(concertResult);
                                 outputStream.writeObject(result);
                             }
                             catch (Exception ex)
@@ -59,50 +60,67 @@ public class ServerSocketTask6
                                 outputStream.writeObject(false);
                             }
                             break;
-                        case "getApartmentsByRoomNumberAndInFloorRange":
+                        case "addNewConcert":
                             try
                             {
-                                int roomNumber = (int) inputStream.readObject();
-                                int floorFrom = (int) inputStream.readObject();
-                                int floorTo = (int) inputStream.readObject();
-                                receivedData = new ArrayList<>();
+                                Concert currentConcert = gson.fromJson(inputStream.readObject().toString(), Concert.class);
+                                boolean boolResult = true;
                                 for (Concert concert : dataSource.exampleData)
                                 {
-                                    if (concert.roomNumber.equals(roomNumber) && concert.floor >= floorFrom && concert.floor <= floorTo)
-                                        receivedData.add(concert);
+                                    if (concert.getId() == currentConcert.getId())
+                                    {
+                                        MyLogger.logger.info("Id is occupied!");
+                                        boolResult = false;
+                                        break;
+                                    }
                                 }
-                                outputStream.writeObject(true);
-                                result = new String();
-                                for (Concert concert : receivedData)
-                                {
-                                    result += gson.toJson(concert);
-                                    result += Constants.SPLIT_SYMBOL;
-                                }
-                                outputStream.writeObject(result);
+                                if (boolResult)
+                                    dataSource.exampleData.add(currentConcert);
+                                outputStream.writeObject(boolResult);
                             }
                             catch (Exception ex)
                             {
                                 outputStream.writeObject(false);
                             }
                             break;
-                        case "getApartmentsThatHaveSquareMoreThan":
+                        case "removeConcertById":
                             try
                             {
-                                float moreThanSquare = (float) inputStream.readObject();
-                                receivedData = new ArrayList<>();
+                                int id = (int) inputStream.readObject();
+                                boolean boolResult = false;
                                 for (Concert concert : dataSource.exampleData)
                                 {
-                                    if (concert.price > moreThanSquare)
-                                        receivedData.add(concert);
+                                    if (concert.getId() == id)
+                                    {
+                                        int index = dataSource.exampleData.indexOf(concert);
+                                        dataSource.exampleData.remove(index);
+                                        boolResult = true;
+                                        break;
+                                    }
                                 }
-                                outputStream.writeObject(true);
-                                result = new String();
-                                for (Concert concert : receivedData)
+                                outputStream.writeObject(boolResult);
+                            }
+                            catch (Exception ex)
+                            {
+                                outputStream.writeObject(false);
+                            }
+                            break;
+                        case "updateConcert":
+                            try
+                            {
+                                Concert newConcert = gson.fromJson(inputStream.readObject().toString(), Concert.class);
+                                boolean boolResult = false;
+                                for (Concert concert : dataSource.exampleData)
                                 {
-                                    result += gson.toJson(concert);
-                                    result += Constants.SPLIT_SYMBOL;
+                                    if (concert.getId() == newConcert.getId())
+                                    {
+                                        int index = dataSource.exampleData.indexOf(concert);
+                                        dataSource.exampleData.set(index, newConcert);
+                                        boolResult = true;
+                                        break;
+                                    }
                                 }
-                                outputStream.writeObject(result);
+                                outputStream.writeObject(boolResult);
                             }
                             catch (Exception ex)
                             {

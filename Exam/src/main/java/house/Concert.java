@@ -8,25 +8,23 @@ import java.util.Arrays;
 
 public class Concert implements Serializable
 {
-    protected static Integer instanceCounter = 0;
     public String genre;
-    public LocalDateTime data;
+    public String date;
     public Float price;
     public ArrayList<String> participantsNames;
     public String place;
-    public ArrayList<Concert> exampleData = new ArrayList<>();
+    public transient ArrayList<Concert> exampleData = new ArrayList<>();
     protected Integer id;
     public Concert()
     {
-        exampleData.add(new Concert("rock", LocalDateTime.of(2021, Month.APRIL, 24, 14, 33, 48, 123456789), 5f, new ArrayList<>(Arrays.asList("First", "Second")), "street1"));
-        exampleData.add(new Concert("rap", LocalDateTime.of(2023, Month.APRIL, 24, 14, 33, 48, 123456789), 15f, new ArrayList<>(Arrays.asList("Third", "Second")), "street2"));
+        exampleData.add(new Concert(1,"rock", "05.02.2022", 5f, new ArrayList<>(Arrays.asList("First", "Second")), "street1"));
+        exampleData.add(new Concert(2,"rap", "13.11.2020", 15f, new ArrayList<>(Arrays.asList("Third", "Second")), "street2"));
     }
-    public Concert(String genre, LocalDateTime data, Float price, ArrayList<String> participantsNames, String place)
+    public Concert(Integer id, String genre, String date, Float price, ArrayList<String> participantsNames, String place)
     {
-        instanceCounter++;
-        this.id = instanceCounter;
+        this.id = id;
         this.genre = genre;
-        this.data = data;
+        this.date = date;
         this.price = price;
         this.participantsNames = participantsNames;
         this.place = place;
@@ -49,8 +47,7 @@ public class Concert implements Serializable
     @Override
     public String toString()
     {
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        String s = "Concert ID: " + id + " Genre: " + genre + " Data: " + data.format(myFormatObj) + " Price: " + price + " Participants: " + participantsNames + " Place: " + place;
+        String s = "Concert ID: " + id + " Genre: " + genre + " Data: " + date + " Price: " + price + " Participants: " + participantsNames + " Place: " + place;
         return s;
     }
 }

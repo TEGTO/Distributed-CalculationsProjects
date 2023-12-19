@@ -1,6 +1,8 @@
 package socket;
 import house.Concert;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ClientSocketTask6
@@ -8,41 +10,60 @@ public class ClientSocketTask6
     public static void main(String[] args)
     {
         Scanner myObj = new Scanner(System.in);
-        SocketMovieDBServerInteraction socketMovieDBServerInteraction = new SocketMovieDBServerInteraction();
-        int roomNumber, floorFrom, floorTo;
-        float square;
-        ArrayList<Concert> apartments;
+        SocketConcertDBServerInteraction socketConcertDBServerInteraction = new SocketConcertDBServerInteraction();
+        int id;
+        float price;
+        String genre, place;
+        Concert concert;
         while (true)
         {
             System.out.println("++++++++Socket Client++++++++");
-            System.out.println("1. Get Apartments By Room Number");
-            System.out.println("2. Get Apartments By Room Number And In Floor Range");
-            System.out.println("3. Get Apartments That Have Square More Than");
+            System.out.println("1. Get Concert by ID");
+            System.out.println("2. Add New Concert");
+            System.out.println("3. Remove Concert By Id");
+            System.out.println("4. Update Concert");
             System.out.print("Enter an action: ");
-            int action = myObj.nextInt();
+            int action = Integer.parseInt(myObj.nextLine());
             switch (action)
             {
                 case 1:
-                    System.out.print("Enter roomNumber: ");
-                    roomNumber = myObj.nextInt();
-                    apartments = socketMovieDBServerInteraction.getConcertById(roomNumber);
-                    Concert.PrintConcert(apartments);
+                    System.out.print("Enter concert id: ");
+                    id = Integer.parseInt(myObj.nextLine());
+                    concert = socketConcertDBServerInteraction.getConcertById(id);
+                    Concert.PrintConcert(concert);
                     break;
                 case 2:
-                    System.out.print("Enter roomNumber: ");
-                    roomNumber = myObj.nextInt();
-                    System.out.print("Enter floor from: ");
-                    floorFrom = myObj.nextInt();
-                    System.out.print("Enter floor to: ");
-                    floorTo = myObj.nextInt();
-                    apartments = socketMovieDBServerInteraction.addNewConcert(roomNumber, floorFrom, floorTo);
-                    Concert.PrintConcert(apartments);
+                    System.out.print("Enter id: ");
+                    id =  Integer.parseInt(myObj.nextLine());
+                    System.out.print("Enter price: ");
+                    price = Float.parseFloat(myObj.nextLine());
+                    System.out.print("Enter place: ");
+                    place = myObj.nextLine();
+                    System.out.print("Enter genre: ");
+                    genre = myObj.nextLine();
+                    Concert newConcert = new Concert(id,genre, "10.12.2019", price, new ArrayList<>(Arrays.asList("New1", "New2")), place);
+                    socketConcertDBServerInteraction.addNewConcert(newConcert);
                     break;
                 case 3:
-                    System.out.print("Enter square: ");
-                    square = myObj.nextFloat();
-                    apartments = socketMovieDBServerInteraction.getApartmentsThatHaveSquareMoreThan(square);
-                    Concert.PrintConcert(apartments);
+                    System.out.print("Enter concert id: ");
+                    id = Integer.parseInt(myObj.nextLine());
+                    socketConcertDBServerInteraction.removeConcertById(id);
+                    break;
+                case 4:
+                    System.out.print("Enter concert id: ");
+                    id = Integer.parseInt(myObj.nextLine());
+                    concert = socketConcertDBServerInteraction.getConcertById(id);
+                    System.out.print("Enter price: ");
+                    price = Float.parseFloat(myObj.nextLine());
+                    concert.price = price;
+                    System.out.print("Enter place: ");
+                    place = myObj.nextLine();
+                    concert.place = place;
+                    System.out.print("Enter genre: ");
+                    genre = myObj.nextLine();
+                    concert.genre = genre;
+                    concert.date = "10.10.2010";
+                    socketConcertDBServerInteraction.updateConcert(concert);
                     break;
                 default:
                     System.out.println("Try again.");
